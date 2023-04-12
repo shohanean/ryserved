@@ -13,7 +13,10 @@ use App\Http\Controllers\{AuthController, DashboardController};
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::redirect('/', 'login');
+
 Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'register_post'])->name('register.post');
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'login_post'])->name('login.post');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');

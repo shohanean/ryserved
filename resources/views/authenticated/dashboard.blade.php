@@ -878,13 +878,15 @@
 
 													<span class="ms-2">Settings </span>
 												</a>
-												<a href="page-login.html" class="dropdown-item ai-icon">
+												<a href="#" class="dropdown-item ai-icon" onclick="$('#logout').submit()">
 													<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
 													<span class="ms-2">Logout </span>
 												</a>
+                                                <form id="logout" action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                </form>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</li>
@@ -1255,13 +1257,8 @@
 				<a class="text-primary fs-13" data-bs-toggle="offcanvas" href="#offcanvasExample1" role="button" aria-controls="offcanvasExample1">+ Add Task</a>
 			</div>
 			<div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <h1>Hello, {{ session('auth_user')->data->hostDTO->first_name }} {{ session('auth_user')->data->hostDTO->last_name }}</h1>
-                    </div>
-                </div>
 				<div class="row">
-					<div class="col-xl-9 wid-100">
+					<div class="col-xl-9 wid-100 d-none">
 						<div class="row">
 							<div class="col-xl-3 col-sm-6">
 								<div class="card chart-grd same-card">
@@ -1702,7 +1699,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xl-3 t-earn">
+					<div class="col-xl-3 t-earn d-none">
 						<div class="card">
 							<div class="card-header border-0 pb-0">
 								<h4 class="heading mb-0">Total Earning</h4>
@@ -1732,7 +1729,9 @@
 					<div class="col-xl-9 bst-seller">
 						<div class="card">
 							<div class="card-header border-0">
-								<h4 class="heading mb-0">Host List</h4>
+								<h4 class="heading mb-0">
+                                    Host List <span class="badge badge-success">{{ $hosts->count() }}</span>
+                                </h4>
 								<div class="d-flex align-items-center cs-settiong">
 									<span>SORT BY:</span>
 									<select class="default-select status-select normal-select">
